@@ -11,9 +11,8 @@ body{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+a,button{transition: all .3s ease-in-out;outline: none!important;} /* Prevent ugly blue glow on chrome and safari */
 a:hover{text-decoration: none; cursor:pointer;}
-
-a,button{outline: none!important;} /* Prevent ugly blue glow on chrome and safari */
 
 #page-loading-blocs-notifaction{position: fixed;top: 0;bottom: 0;width: 100%;z-index:100000;background:#FFFFFF url("img/pageload-spinner.gif") no-repeat center center;}
 
@@ -36,54 +35,14 @@ a,button{outline: none!important;} /* Prevent ugly blue glow on chrome and safar
 	padding-right:0;
 }
 
-/* = Full Screen Blocs 
--------------------------------------------------------------- */
 
-.bloc-fill-screen{
-	padding-top:0;
-	position: relative;
-	height: inherit;
+/* Sizes */
+
+.bloc-lg{
+	padding:100px 50px;
 }
-.bloc-fill-screen > .container{
-	position:relative;
-	top:50%;
-	transform:translateY(-50%);
-	-webkit-transform:translateY(-50%);
-}
-.bloc-fill-screen.bloc-group .bloc{
-	vertical-align: middle!important;
-}
-.bloc-fill-screen .fill-bloc-top-edge, .bloc-fill-screen .fill-bloc-bottom-edge{
-	position: absolute;
-	margin: 20px auto;
-	left: 0;
-	right: 0;
-	z-index: 1;
-	transform: none;
-}
-.bloc-fill-screen .fill-bloc-top-edge{
-	top:0;
-}
-.bloc-fill-screen .fill-bloc-bottom-edge{
-	top: initial;
-	bottom: 20px;
-}
-.blocs-hero-btn-dwn{
-	width: 58px;
-	height: 58px;
-	display: block;
-	margin:0 auto;
-	line-height: 58px;
-	padding: 0;
-	border-radius: 50%;
-	text-align: center;
-	font-size: 18px;
-	color: rgba(255,255,255,.8);
-	background: rgba(0,0,0,.6);
-	border:0;
-}
-.blocs-hero-btn-dwn:hover{
-	color: rgba(255,255,255,1);
+.bloc-sm{
+	padding:20px 50px;
 }
 
 
@@ -115,6 +74,12 @@ a,button{outline: none!important;} /* Prevent ugly blue glow on chrome and safar
 	border-color:rgba(0,0,0,.3);
 }
 
+/* Row Margin Offsets */
+
+.voffset{
+	margin-top:30px;
+}
+
 /* Bloc text custom styling */
 
 
@@ -137,6 +102,9 @@ a,button{outline: none!important;} /* Prevent ugly blue glow on chrome and safar
 	max-height: 200px;
 	margin: 0 5px 0 0;
 	display:inline;
+}
+.nav-center .navbar-brand img{
+	margin:0;
 }
 .navbar .nav{
 	padding-top: 2px;
@@ -173,6 +141,8 @@ a,button{outline: none!important;} /* Prevent ugly blue glow on chrome and safar
 }
 .nav-invert .navbar-header, .nav-invert .navbar-brand{
 	float:right;
+	position:relative;
+	z-index:2;
 }
 @media (min-width: 768px){
 	.site-navigation{
@@ -202,7 +172,13 @@ a,button{outline: none!important;} /* Prevent ugly blue glow on chrome and safar
 	.nav-center .site-navigation{
 		position:relative;
 		width:100%;
+		right:0;
+		margin-right:0px;
 		margin-top:20px;
+	}
+.nav-center.mini-nav .navbar-toggle{
+	float:none;
+	margin: 10px auto 0;
 	}
 }
 .nav > li > .dropdown a{
@@ -238,9 +214,9 @@ nav .caret{
 /* = Bric adjustment margins
 -------------------------------------------------------------- */
 
-.mg-lg{
+.mg-md{
 	margin-top:10px;
-	margin-bottom:40px;
+	margin-bottom:20px;
 }
 
 /* = Buttons
@@ -262,12 +238,43 @@ button{
 	outline: none!important;
 }
 
-.btn .caret{
-	margin:0 0 0 5px}.dropdown a .caret{
-	margin:0 0 0 5px}.btn-dropdown .dropdown-menu .dropdown{
-	padding: 3px 20px;
+.a-btn{
+	padding: 6px 10px 6px 0;
+	line-height: 1.42857143;
+	display:inline-block;
+}
+.text-center .a-btn{
+	padding: 6px 0;
+}
+.a-block{
+	width:100%;
+	text-align:left;
+}
+.text-center .a-block{
+	text-align:center;
 }
 
+/* = Icons
+-------------------------------------------------------------- */
+.icon-md{
+	font-size:30px!important;
+}
+.icon-round{
+	margin:0 auto;
+	border:2px solid transparent;
+	border-radius: 50%;
+	padding: 32px 30px 26px 30px;
+	min-width:80px;
+}
+.icon-round.icon-md,.icon-square.icon-md,.icon-rounded.icon-md{
+	min-width: 92px;
+}
+.icon-round.icon-lg,.icon-square.icon-lg,.icon-rounded.icon-lg{
+	min-width: 122px;
+}
+.icon-round.icon-xl,.icon-square.icon-xl,.icon-rounded.icon-xl{
+	min-width: 162px;
+}
 
 
 
@@ -287,11 +294,6 @@ button{
 
 
 
-/* iFrame */
-
-iframe{
-	border:0;
-}
 
 
 /* ScrollToTop button */
@@ -368,11 +370,13 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
     }
 }
 @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {.b-parallax{background-attachment:scroll;}}
-@media (max-width: 768px)
+@media (max-width: 991px)
 {
     .container{width:100%;}
     .b-parallax{background-attachment:scroll;}
     .page-container, #hero-bloc{overflow-x: hidden;position: relative;} /* Prevent unwanted side scroll on mobile */
+    .bloc-group, .bloc-group .bloc{display:block;width:100%;}
+    .bloc-tile-2 .container, .bloc-tile-3 .container, .bloc-tile-4 .container{padding-left: 10px;padding-right: 10px;}
 }
 @media (max-width: 767px)
 {
@@ -392,14 +396,6 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
     }
     #hero-bloc h3{
         font-size:25px;
-    }
-    .bloc{
-        padding-left: 0; 
-        padding-right: 0;  
-        -webkit-background-size: auto 200%;
-        -moz-background-size: auto 200%;
-        -o-background-size: auto 200%;
-        background-size: auto 200%;
     }
     .b-parallax{
         background-attachment:scroll;
@@ -469,13 +465,9 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
     .nav-invert .navbar-toggle{
         float:left; 
     }
-    .bloc-group .bloc{
-         display:block;
-         width:100%;
-     }
-    .bloc-tile-2 .container, .bloc-tile-3 .container, .bloc-tile-4 .container{
-	   padding-left: 10px;
-	   padding-right: 10px;
+    .bloc{
+        padding-left: 0; 
+        padding-right: 0;
     }
     .bloc-xxl,.bloc-xl,.bloc-lg{
         padding: 40px 0;
@@ -483,6 +475,9 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
     .bloc-sm,.bloc-md{
         padding-left: 0; 
         padding-right: 0;
+    }
+    .bloc-tile-2 .container, .bloc-tile-3 .container, .bloc-tile-4 .container{
+        padding-left:0;padding-right:0;
     }
     .a-block{
         padding:0 10px;
@@ -519,3 +514,24 @@ h1,h2,h3,h4,h5,h6,p,label,.btn,a{
 	   height: 320px;
     }
 }
+
+@media (max-width: 400px)
+{    
+    .bloc{
+        padding-left: 0; 
+        padding-right: 0;  
+        -webkit-background-size: auto 200%;
+        -moz-background-size: auto 200%;
+        -o-background-size: auto 200%;
+        background-size: auto 200%;
+    }
+}
+@media (max-width: 767px){
+	.blocs-mob-center-text{
+	text-align:center;
+}
+.bloc-mob-center-text{
+	text-align:center;
+}
+ }
+
